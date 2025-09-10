@@ -157,7 +157,11 @@ function gameOver() {
   ctx.font = "28px Arial";
   ctx.fillText(`Score: ${score}`, canvas.width / 2, canvas.height / 2 + 10);
   ctx.font = "20px Arial";
-  ctx.fillText("Click to Play Again", canvas.width / 2, canvas.height / 2 + 50);
+  ctx.fillText("Play Again in 5 Seconds", canvas.width / 2, canvas.height / 2 + 50);
+  setInterval(function () {
+    restartGame();
+    gameLoop();
+  }, 5);
 }
 
 restartGame();
