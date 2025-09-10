@@ -80,7 +80,6 @@ function gameLoop() {
     player.x += player.speed;
   }
 
-  // Desenhando o "boneco" com mais detalhes (nave espacial estilizada)
   ctx.fillStyle = "#30f030";
   ctx.beginPath();
   ctx.moveTo(player.x + 25, player.y); // ponta da nave
@@ -89,10 +88,9 @@ function gameLoop() {
   ctx.closePath();
   ctx.fill();
 
-  // Desenhando uma "janela" ou cockpit da nave
   ctx.fillStyle = "#00f";
   ctx.beginPath();
-  ctx.arc(player.x + 25, player.y + 12, 6, 0, 2 * Math.PI); // janela da nave
+  ctx.arc(player.x + 25, player.y + 12, 6, 0, 2 * Math.PI);
   ctx.fill();
 
   bullets = bullets.filter(bullet => {
