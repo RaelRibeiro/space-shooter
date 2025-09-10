@@ -11,8 +11,8 @@ let player = {
 };
 
 let bullets = [];
-const bulletWidth = 3;
-const bulletHeight = 15;
+const bulletWidth = 5;
+const bulletHeight = 20;
 const bulletSpeed = 12;
 
 let enemies = [];
@@ -36,6 +36,7 @@ document.addEventListener("keydown", (e) => {
       width: bulletWidth,
       height: bulletHeight,
       color: "#fff",
+      speed: bulletSpeed,
     });
     e.preventDefault();
   }
@@ -79,14 +80,23 @@ function gameLoop() {
     player.x += player.speed;
   }
 
-  ctx.fillStyle = player.color;
-  ctx.fillRect(player.x, player.y, player.width, player.height);
-  // Add cockpit
+  // Desenhando o "boneco" com mais detalhes (nave espacial estilizada)
+  ctx.fillStyle = "#30f030";
+  ctx.beginPath();
+  ctx.moveTo(player.x + 25, player.y); // ponta da nave
+  ctx.lineTo(player.x + 5, player.y + 40); // lado esquerdo
+  ctx.lineTo(player.x + 45, player.y + 40); // lado direito
+  ctx.closePath();
+  ctx.fill();
+
+  // Desenhando uma "janela" ou cockpit da nave
   ctx.fillStyle = "#00f";
-  ctx.fillRect(player.x + 20, player.y + 10, 10, 15);
+  ctx.beginPath();
+  ctx.arc(player.x + 25, player.y + 12, 6, 0, 2 * Math.PI); // janela da nave
+  ctx.fill();
 
   bullets = bullets.filter(bullet => {
-    bullet.y -= bulletSpeed;
+    bullet.y -= bullet.speed;
     ctx.fillStyle = bullet.color;
     ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
     return bullet.y > 0;
@@ -164,7 +174,6 @@ function gameOver() {
     gameLoop();
   }, 5000);
 }
-
 
 restartGame();
 gameLoop();
