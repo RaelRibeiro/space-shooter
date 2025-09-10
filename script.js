@@ -161,7 +161,7 @@ function gameOver() {
   setInterval(function () {
     restartGame();
     gameLoop();
-  }, 5);
+  }, 50);
 }
 
 restartGame();
